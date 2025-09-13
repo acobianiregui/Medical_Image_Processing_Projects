@@ -1,9 +1,10 @@
 %% Question 1
 
 I=imread("Project1_Data\magnified-pollen-dark.tif");
-cdf_plot(I,"CDF before") %Handmade function, check .m file
-J = histeq(I);
-cdf_plot(J,"CDF after")
+[M,N]=
+pdf1=histogram(I)/;
+J = histeq(image);
+
 figure
 subplot(1,2,1)
 imshow(I)
@@ -13,14 +14,8 @@ imshow(J)
 %% Question 2
 clear;
 I=imread("Project1_Data\hidden-symbols.tif");
-cdf_plot(I,"CDF before")
-
 J = ...
 adapthisteq(I,'NumTiles',[64,64],'clipLimit',0.3,'Distribution','rayleigh');
-figure
-cdf_plot(J,"CDF after")
-
-figure
 imshowpair(I,J,'montage');
 title('Original Image (left) and Contrast Enhanced Image (right)')
 %% Question 3
