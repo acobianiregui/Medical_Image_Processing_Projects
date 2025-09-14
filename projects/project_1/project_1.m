@@ -1,5 +1,5 @@
 %% Question 1
-
+clear;
 I=imread("Project1_Data\magnified-pollen-dark.tif");
 cdf_plot(I,"CDF before") %Handmade function, check .m file
 J = histeq(I);
@@ -27,7 +27,7 @@ title('Original Image (left) and Contrast Enhanced Image (right)')
 clear;
 I=imread("Project1_Data\fingerprint.png");
 %Gamma trasnformation
-J = imadjust(I,[],[],0.4);
+J = imadjust(I,[],[],0.9);
 %J= log(1+ im2double(image));
 %Histeq
 J1=histeq(I);
@@ -45,5 +45,22 @@ subplot(2,2,4)
 imshow(J3)
 
 %% Question 4
+clear;
 
-% To be continued
+I=im2double(imread("Project1_Data\oct_scan.jpeg"));
+
+%Filtering noise (Keeping the noise to substract later)
+I_smooth=medfilt2(I,[16 10],"zeros");
+
+%Apply threshold & substract mask from orginal image
+level = graythresh(I_smooth);
+mask = I_smooth > level*0.45;   
+mask=~mask;
+I_masked = I_smooth .* mask;
+
+o=I-10*I_masked; % x10 was shown to be a good factor
+%Finally, adaptive histogram equalization 
+out=adapthisteq(o,'NumTiles',[8,8],'clipLimit',0.01,'Distribution','rayleigh');
+out(1:90,:)=out(95,95);
+out(400:end,:)=out(95,95);
+imshow(out)

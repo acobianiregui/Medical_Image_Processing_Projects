@@ -1,3 +1,4 @@
+%Independent code to test question 4 solution
 I=im2double(imread("Project1_Data\oct_scan.jpeg"));
 
 %I_smooth=zeros(size(I));

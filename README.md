@@ -18,3 +18,6 @@ Root
     |   Code1.m
     |   ...
 ```
+
+> ⚠️ Disclaimer: The original medical images used in these assignments are provided by the Georgia Tech course *BMED/ECE 4783: Intro to Medical Image Processing*.  
+> Only processed results are shown here. No private or clinical patient data is included in this repository.
