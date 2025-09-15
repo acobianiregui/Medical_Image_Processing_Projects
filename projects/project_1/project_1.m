@@ -1,9 +1,9 @@
 %% Question 1
 clear;
 I=imread("Project1_Data\magnified-pollen-dark.tif");
-cdf_plot(I,"CDF before") %Handmade function, check .m file
+cdf_plot(I,"CDF before"); %Handmade function, check .m file
 J = histeq(I);
-cdf_plot(J,"CDF after")
+cdf_plot(J,"CDF after");
 figure
 subplot(1,2,1)
 imshow(I)
@@ -13,12 +13,12 @@ imshow(J)
 %% Question 2
 clear;
 I=imread("Project1_Data\hidden-symbols.tif");
-cdf_plot(I,"CDF before")
+cdf_plot(I,"CDF before");
 
 J = ...
 adapthisteq(I,'NumTiles',[64,64],'clipLimit',0.3,'Distribution','rayleigh');
 figure
-cdf_plot(J,"CDF after")
+cdf_plot(J,"CDF after");
 
 figure
 imshowpair(I,J,'montage');
@@ -27,12 +27,16 @@ title('Original Image (left) and Contrast Enhanced Image (right)')
 clear;
 I=imread("Project1_Data\fingerprint.png");
 %Gamma trasnformation
+cdf_plot(I,"CDF before");
 J = imadjust(I,[],[],0.9);
 %J= log(1+ im2double(image));
 %Histeq
 J1=histeq(I);
+figure
+cdf_plot(J1,"CDF after");
 threshold=0.04;
 %Adapt Histeq
+
 J3=adapthisteq(I,'clipLimit',threshold,'Distribution','rayleigh');
 figure
 subplot(2,2,1)
@@ -48,7 +52,6 @@ imshow(J3)
 clear;
 
 I=im2double(imread("Project1_Data\oct_scan.jpeg"));
-
 %Filtering noise (Keeping the noise to substract later)
 I_smooth=medfilt2(I,[16 10],"zeros");
 
