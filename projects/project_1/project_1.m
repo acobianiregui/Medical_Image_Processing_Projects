@@ -66,4 +66,5 @@ o=I-10*I_masked; % x10 was shown to be a good factor
 out=adapthisteq(o,'NumTiles',[8,8],'clipLimit',0.01,'Distribution','rayleigh');
 out(1:90,:)=out(95,95);
 out(400:end,:)=out(95,95);
-imshow(out)
+imshow(out);
+imwrite(out,"./output/oct_scan_clean.png");
