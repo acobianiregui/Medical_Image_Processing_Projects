@@ -1,7 +1,7 @@
 %% Question 1
+% a) PLot
+clear;
 I=imread("Project2_data\liver-cells-gray.tif");
-
-%% a) PLot
 figure
 imshow(I);
 %b) 
@@ -19,15 +19,16 @@ imshow(out2,[]);
 title("Substraction c)")
 %d)
 I_double=im2double(imread('Project2_data\liver-cells-gray.tif'));
-f=fspecial('laplacian', 0);
+f=fspecial('laplacian', 0.2);
 out3=imfilter(I_double,f);
 figure;
+title("ergerh")
 subplot(1,3,1)
 imshow(I_double,[]);
 subplot(1,3,2);
 imshow(out1,[]);
 subplot(1,3,3);
-imshow(out3,[]);
+imshow(out3);
 %e)
 out4=I_double-out3;
 figure;
@@ -36,10 +37,11 @@ title("Subsctraction e)");
 %f)
 m=max(max(out1));
 figure
-imshowpair(out1,integer(out3.*double(m)/255),"montage")
+
+imshowpair(out1,uint8(out3*double(m)/255),"montage")
 title("b) and d) comparison");
 figure
-imshowpair(out2,out4,"montage")
+imshowpair(out2,double(m)*out4/255,"montage")
 title("c) and e) comparison")
 I_int=imread("Project2_data\liver-cells-gray.tif");
 %% Question 2
@@ -50,7 +52,7 @@ dental_s=imread("Project2_data\dentalXray-salt-noise.tif");
 addpath('./Project2_data/') %To import functions in projectData2
 
 med_p=medfilt2(dental_p,[3 3]);
-ord_p=ordfilt2(dental_p,1,ones(3,3));
+ord_p=ordfilt2(dental_p,9,ones(3,3));
 min_p=minfilter(im2double(dental_p),3,3);
 max_p=maxfilter(im2double(dental_p),3,3);
 figure;
@@ -59,7 +61,7 @@ subplot(2,2,1)
 imshow(med_p);
 title("Med filter")
 subplot(2,2,2)
-imshow(ord_p);
+imshow(ord_p,[]);
 title("Ord filter")
 subplot(2,2,3)
 imshow(max_p);
@@ -88,7 +90,7 @@ subplot(2,2,4)
 imshow(min_s);
 title("Min filter")
 
-imwrite(gsc)
+saveas(gcf,"image_ouputs\salt_noise_filters.png")
 %% Question 3
 %Load picture from project 1
 clear;
