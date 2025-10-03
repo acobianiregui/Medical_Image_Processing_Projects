@@ -1,13 +1,18 @@
 %% Question 1
 clear
-image1 = imread('mixed-squares.tif');
+%% 1
+image1 = imread('Project3_data\mixed-squares.tif');
 imageNew = imerode(image1, ones(28));
 figure
 subplot(1,2,1);
 imshow(image1);
+title('Original Image');
+subplot(1,2,2);
+imshow(imageNew);
+title('Eroded Image');
 %% Question 2
 clear
-Image = imread("subcellimage.png");
+Image = imread("Project3_data\subcellimage.png");
 se = strel('disk', 50);
 ImageNew=imopen(Image, se);
 figure;
@@ -19,7 +24,7 @@ imshow(ImageNew);
 title("Altered Image");
 %% Question 3
 clear
-Image = imread("thumbprint.tif");
+Image = imread("Project3_data\thumbprint.tif");
 % Open image
 se = strel('square',4);
 To = imopen(Image,se);
@@ -33,7 +38,7 @@ subplot(1,3,2);
 imshow(To);
 title("Opened Image");
 subplot(1,3,3);
-imshow(Tc);
+imshow(Toc);
 title("Opened then Closed Image");
 
 %% Question 4
@@ -56,7 +61,7 @@ figure
 imshowpair(I,ColorImage,"montage")
 %% Question 5
 %1. Read image and extract green channel
-fundus = imread('fundus_image.jpg');
+fundus = imread('Project3_data\fundus_image.jpg');
 greenChannel = fundus(:,:,2);
 %2. Enhance vessels with black-hat transform
 se = strel('disk',10);
