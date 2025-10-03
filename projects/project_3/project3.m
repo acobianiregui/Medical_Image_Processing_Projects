@@ -10,6 +10,7 @@ title('Original Image');
 subplot(1,2,2);
 imshow(imageNew);
 title('Eroded Image');
+saveas(gcf, "results/erode_squares.png");
 %% Question 2
 clear
 Image = imread("Project3_data\subcellimage.png");
@@ -22,6 +23,7 @@ title("Original Image");
 subplot(1,2,2);
 imshow(ImageNew);
 title("Altered Image");
+saveas(gcf, "results/subcell.png");
 %% Question 3
 clear
 Image = imread("Project3_data\thumbprint.tif");
@@ -40,7 +42,7 @@ title("Opened Image");
 subplot(1,3,3);
 imshow(Toc);
 title("Opened then Closed Image");
-
+saveas(gcf, "results/thumbprint.png");
 %% Question 4
 clear
 %a)
@@ -59,6 +61,7 @@ ColorImage = label2rgb(L,'jet',[0.7 0.7 0.7],'shuffle');
 %e)
 figure
 imshowpair(I,ColorImage,"montage")
+saveas(gcf, "results/strom_cells.png");
 %% Question 5
 %1. Read image and extract green channel
 fundus = imread('Project3_data\fundus_image.jpg');
@@ -80,3 +83,4 @@ figure;
 subplot(1,3,1), imshow(greenChannel), title('Green Channel');
 subplot(1,3,2), imshow(bw_closed), title('Binary Vessel Mask');
 subplot(1,3,3), imshow(skeleton), title('Skeletonized Vessels');
+saveas(gcf, "results/fundus.png");
